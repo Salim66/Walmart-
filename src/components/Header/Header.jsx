@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import LogoBig from '../../assets/img/logo.png';
 import LogoSmall from '../../assets/img/logo-small.png';
 import Avatar from '../Profile/Avatar';
+import useCustomPopupControl from '../../hooks/useCustomPopupControl';
 
 const Header = () => {
-    const [drop, setDrop] = useState(false);
+    
+    const { isOpen, toggleMenu } = useCustomPopupControl();
+    
     return (
         <>
             <div className="header">
@@ -36,10 +39,11 @@ const Header = () => {
                 <ul className="nav user-menu">
 
                     <li className="nav-item dropdown noti-dropdown">
-                        <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <a href="#" onClick={toggleMenu} className="dropdown-toggle nav-link" data-toggle="dropdown">
                             <i className="fe fe-bell"></i> <span className="badge badge-pill">3</span>
                         </a>
-                        <div className="dropdown-menu notifications" style={{ transform: `translateX(-300px)` }}>
+                        {isOpen &&
+                            <div className="dropdown-menu notifications" style={{ transform: `translateX(-300px)` }}>
                             <div className="topnav-dropdown-header">
                                 <span className="notification-title">Notifications</span>
                                 <a href="javascript:void(0)" className="clear-noti"> Clear All </a>
@@ -103,16 +107,17 @@ const Header = () => {
                             <div className="topnav-dropdown-footer">
                                 <a href="#">View all Notifications</a>
                             </div>
-                        </div>
+                        </div>}
+                        
                     </li>
 
                     <li className="nav-item dropdown has-arrow">
-                        <a href="#" onClick={() => setDrop(!drop)} className="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <a href="#" onClick={toggleMenu} className="dropdown-toggle nav-link" data-toggle="dropdown">
                             <span className="user-img">
                                 <Avatar classData="rounded-circle" altData="Ryan Taylor" width="31" />
                             </span>
                         </a>
-                        <div className={`dropdown-menu ${drop && 'show'}`} style={{ transform: `translateX(-125px)` }}>
+                        <div className={`dropdown-menu ${isOpen && 'show'}`} style={{ transform: `translateX(-125px)` }}>
                             <div className="user-header">
                                 <div className="avatar avatar-sm">
                                     <Avatar classData="avatar-img rounded-circle" altData="User Image" />
