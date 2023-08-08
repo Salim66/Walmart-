@@ -1,6 +1,6 @@
-import Forgot from "../components/Auth/Forgot";
-import Login from "../components/Auth/Login";
-import Register from "../components/Auth/Register";
+import Forgot from "../pages/Auth/Forgot";
+import Login from "../pages/Auth/Login";
+import Register from "../pages/Auth/Register";
 
 
 const publicRoutes = [

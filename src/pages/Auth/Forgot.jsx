@@ -1,5 +1,5 @@
 import React from 'react'
-import LogoWhite from '../Logo/LogoWhite';
+import LogoWhite from '../../components/Logo/LogoWhite';
 import { Link } from 'react-router-dom';
 
 const Forgot = () => {

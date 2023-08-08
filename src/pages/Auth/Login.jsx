@@ -1,8 +1,8 @@
 import React from 'react'
+import LogoWhite from '../../components/Logo/LogoWhite'
 import { Link } from 'react-router-dom'
-import LogoWhite from '../Logo/LogoWhite'
 
-const Register = () => {
+const Login = () => {
   return (
       <>
           <div className="main-wrapper login-body">
@@ -14,13 +14,10 @@ const Register = () => {
                           </div>
                           <div className="login-right">
                               <div className="login-right-wrap">
-                                  <h1>Register</h1>
+                                  <h1>Login</h1>
                                   <p className="account-subtitle">Access to our dashboard</p>
 
-                                  <form action="https://dreamguys.co.in/demo/doccure/admin/login.html">
-                                      <div className="form-group">
-                                          <input className="form-control" type="text" placeholder="Name" />
-                                      </div>
+                                  <form action="https://dreamguys.co.in/demo/doccure/admin/index.html">
                                       <div className="form-group">
                                           <input className="form-control" type="text" placeholder="Email" />
                                       </div>
@@ -28,24 +25,22 @@ const Register = () => {
                                           <input className="form-control" type="text" placeholder="Password" />
                                       </div>
                                       <div className="form-group">
-                                          <input className="form-control" type="text" placeholder="Confirm Password" />
-                                      </div>
-                                      <div className="form-group mb-0">
-                                          <button className="btn btn-primary btn-block" type="submit">Register</button>
+                                          <button className="btn btn-primary btn-block" type="submit">Login</button>
                                       </div>
                                   </form>
 
+                                  <div className="text-center forgotpass"><Link to="/forgot">Forgot Password?</Link></div>
                                   <div className="login-or">
                                       <span className="or-line"></span>
                                       <span className="span-or">or</span>
                                   </div>
 
                                   <div className="social-login">
-                                      <span>Register with</span>
+                                      <span>Login with</span>
                                       <a href="#" className="facebook"><i className="fa fa-facebook"></i></a><a href="#" className="google"><i className="fa fa-google"></i></a>
                                   </div>
 
-                                  <div className="text-center dont-have">Already have an account? <Link to="/login">Login</Link></div>
+                                  <div className="text-center dont-have">Don’t have an account? <Link to="/register">Register</Link></div>
                               </div>
                           </div>
                       </div>
@@ -56,4 +51,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Login

@@ -1,11 +1,19 @@
-import Dashboard from "../components/Dashboard/Dashboard";
+import PageLayout from "../components/PageLayout/PageLayout";
+import Dashboard from "../pages/Dashboard/Dashboard";
+
 
 
 const privateRoutes = [
     {
-        path: "/",
-        element: <Dashboard />
+        element: <PageLayout />,
+        children: [
+            {
+                path: "/",
+                element: <Dashboard />
+            }
+        ]
     }
+    
 ];
 
 export default privateRoutes;
