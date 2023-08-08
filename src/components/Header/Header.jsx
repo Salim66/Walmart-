@@ -6,7 +6,8 @@ import useCustomPopupControl from '../../hooks/useCustomPopupControl';
 
 const Header = () => {
     
-    const { isOpen, toggleMenu } = useCustomPopupControl();
+    const { isOpen, toggleMenu, dropDownRef } = useCustomPopupControl();
+    const { isOpen: notificationOpen, toggleMenu: notificationToggleMenu, dropDownRef: notificationDropDownRef } = useCustomPopupControl();
     
     return (
         <>
@@ -38,12 +39,12 @@ const Header = () => {
 
                 <ul className="nav user-menu">
 
-                    <li className="nav-item dropdown noti-dropdown">
-                        <a href="#" onClick={toggleMenu} className="dropdown-toggle nav-link" data-toggle="dropdown">
+                    <li className="nav-item dropdown noti-dropdown" ref={notificationDropDownRef}>
+                        <a href="#" onClick={notificationToggleMenu} className="dropdown-toggle nav-link" data-toggle="dropdown">
                             <i className="fe fe-bell"></i> <span className="badge badge-pill">3</span>
                         </a>
-                        {isOpen &&
-                            <div className="dropdown-menu notifications" style={{ transform: `translateX(-300px)` }}>
+                        {notificationOpen &&
+                            <div className="dropdown-menu notifications d-block" style={{ transform: `translateX(-300px)` }}>
                             <div className="topnav-dropdown-header">
                                 <span className="notification-title">Notifications</span>
                                 <a href="javascript:void(0)" className="clear-noti"> Clear All </a>
@@ -111,7 +112,7 @@ const Header = () => {
                         
                     </li>
 
-                    <li className="nav-item dropdown has-arrow">
+                    <li className="nav-item dropdown has-arrow" ref={dropDownRef}>
                         <a href="#" onClick={toggleMenu} className="dropdown-toggle nav-link" data-toggle="dropdown">
                             <span className="user-img">
                                 <Avatar classData="rounded-circle" altData="Ryan Taylor" width="31" />
