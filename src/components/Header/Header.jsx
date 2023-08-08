@@ -39,7 +39,7 @@ const Header = () => {
                         <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
                             <i className="fe fe-bell"></i> <span className="badge badge-pill">3</span>
                         </a>
-                        <div className="dropdown-menu notifications">
+                        <div className="dropdown-menu notifications" style={{ transform: `translateX(-300px)` }}>
                             <div className="topnav-dropdown-header">
                                 <span className="notification-title">Notifications</span>
                                 <a href="javascript:void(0)" className="clear-noti"> Clear All </a>
@@ -50,7 +50,7 @@ const Header = () => {
                                         <a href="#">
                                             <div className="media">
                                                 <span className="avatar avatar-sm">
-                                                    <img className="avatar-img rounded-circle" alt="User Image" src="assets/img/doctors/doctor-thumb-01.jpg" />
+                                                    <Avatar classData="avatar-img rounded-circle" altData="User Image" />
                                                 </span>
                                                 <div className="media-body">
                                                     <p className="noti-details"><span className="noti-title">Dr. Ruby Perrin</span> Schedule <span className="noti-title">her appointment</span></p>
@@ -63,7 +63,7 @@ const Header = () => {
                                         <a href="#">
                                             <div className="media">
                                                 <span className="avatar avatar-sm">
-                                                    <img className="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient1.jpg" />
+                                                    <Avatar classData="avatar-img rounded-circle" altData="User Image" />
                                                 </span>
                                                 <div className="media-body">
                                                     <p className="noti-details"><span className="noti-title">Charlene Reed</span> has booked her appointment to <span className="noti-title">Dr. Ruby Perrin</span></p>
@@ -76,7 +76,7 @@ const Header = () => {
                                         <a href="#">
                                             <div className="media">
                                                 <span className="avatar avatar-sm">
-                                                    <img className="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient2.jpg" />
+                                                    <Avatar classData="avatar-img rounded-circle" altData="User Image" />
                                                 </span>
                                                 <div className="media-body">
                                                     <p className="noti-details"><span className="noti-title">Travis Trimble</span> sent a amount of $210 for his <span className="noti-title">appointment</span></p>
