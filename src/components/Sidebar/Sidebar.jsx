@@ -14,6 +14,9 @@ const Sidebar = () => {
                             <li className="">
                                 <Link to="/"><i className="fe fe-home"></i> <span>Dashboard</span></Link>
                             </li>
+                            <li className="">
+                                <Link to="/user"><i className="fe fe-user"></i> <span>User</span></Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
