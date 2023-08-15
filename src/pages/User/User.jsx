@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import doctorImg from '../../assets/img/doctors/doctor-thumb-01.jpg';
 import ModalPopup from '../../components/ModalPopup/ModalPopup';
+import DataTable from 'datatables.net-dt';
 
 const User = () => {
+
+    useEffect(() => {
+        new DataTable('.datatable');
+    });
   return (
       <>
           <div className="page-header">
@@ -31,7 +36,7 @@ const User = () => {
                       </div>
                       <div className="card-body">
                           <div className="table-responsive">
-                              <table className="table table-hover table-center mb-0">
+                              <table className="datatable table table-hover table-center mb-0">
                                   <thead>
                                       <tr>
                                           <th>Doctor Name</th>
