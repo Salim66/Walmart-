@@ -1,5 +1,6 @@
 import React from 'react'
 import doctorImg from '../../assets/img/doctors/doctor-thumb-01.jpg';
+import ModalPopup from '../../components/ModalPopup/ModalPopup';
 
 const User = () => {
   return (
@@ -15,9 +16,15 @@ const User = () => {
               </div>
           </div>
 
+          <ModalPopup target="userModalPopup">
+              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic nemo soluta libero ullam aliquam accusantium consequuntur dicta sunt deleniti aliquid architecto, similique quis at enim magni ad, natus saepe nobis.</p>
+          </ModalPopup>
+
           <div className="row">
               <div className="col-md-12">
-
+                  <button className='btn btn-primary' data-target="#userModalPopup" data-toggle="modal">Add new user</button>
+                  <br />
+                  <br />
                   <div className="card card-table">
                       <div className="card-header">
                           <h4 className="card-title">Appointment List</h4>
