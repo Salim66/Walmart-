@@ -44,7 +44,7 @@ const createUser = asyncHandler(async (req, res) => {
   const { name, email, password, role } = req.body;
 
   // check validation
-  if (!name || !password || !email || !role) {
+  if (!name || !password || !email) {
     return res.status(400).json({ message: "All fields are required" });
   }
 
