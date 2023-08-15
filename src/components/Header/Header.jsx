@@ -2,12 +2,8 @@ import React, { useState } from 'react'
 import LogoBig from '../../assets/img/logo.png';
 import LogoSmall from '../../assets/img/logo-small.png';
 import Avatar from '../Profile/Avatar';
-import useCustomPopupControl from '../../hooks/useCustomPopupControl';
 
 const Header = () => {
-    
-    const { isOpen, toggleMenu, dropDownRef } = useCustomPopupControl();
-    const { isOpen: notificationOpen, toggleMenu: notificationToggleMenu, dropDownRef: notificationDropDownRef } = useCustomPopupControl();
     
     return (
         <>
@@ -38,13 +34,11 @@ const Header = () => {
                 </a>
 
                 <ul className="nav user-menu">
-
-                    <li className="nav-item dropdown noti-dropdown" ref={notificationDropDownRef}>
-                        <a href="#" onClick={notificationToggleMenu} className="dropdown-toggle nav-link" data-toggle="dropdown">
+                    <li className="nav-item dropdown noti-dropdown">
+                        <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
                             <i className="fe fe-bell"></i> <span className="badge badge-pill">3</span>
                         </a>
-                        {notificationOpen &&
-                            <div className="dropdown-menu notifications d-block" style={{ transform: `translateX(-300px)` }}>
+                        <div className="dropdown-menu notifications">
                             <div className="topnav-dropdown-header">
                                 <span className="notification-title">Notifications</span>
                                 <a href="javascript:void(0)" className="clear-noti"> Clear All </a>
@@ -55,7 +49,7 @@ const Header = () => {
                                         <a href="#">
                                             <div className="media">
                                                 <span className="avatar avatar-sm">
-                                                    <Avatar classData="avatar-img rounded-circle" altData="User Image" />
+                                                    <img className="avatar-img rounded-circle" alt="User Image" src="assets/img/doctors/doctor-thumb-01.jpg" />
                                                 </span>
                                                 <div className="media-body">
                                                     <p className="noti-details"><span className="noti-title">Dr. Ruby Perrin</span> Schedule <span className="noti-title">her appointment</span></p>
@@ -68,7 +62,7 @@ const Header = () => {
                                         <a href="#">
                                             <div className="media">
                                                 <span className="avatar avatar-sm">
-                                                    <Avatar classData="avatar-img rounded-circle" altData="User Image" />
+                                                    <img className="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient1.jpg" />
                                                 </span>
                                                 <div className="media-body">
                                                     <p className="noti-details"><span className="noti-title">Charlene Reed</span> has booked her appointment to <span className="noti-title">Dr. Ruby Perrin</span></p>
@@ -81,7 +75,7 @@ const Header = () => {
                                         <a href="#">
                                             <div className="media">
                                                 <span className="avatar avatar-sm">
-                                                    <Avatar classData="avatar-img rounded-circle" altData="User Image" />
+                                                    <img className="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient2.jpg" />
                                                 </span>
                                                 <div className="media-body">
                                                     <p className="noti-details"><span className="noti-title">Travis Trimble</span> sent a amount of $210 for his <span className="noti-title">appointment</span></p>
@@ -94,7 +88,7 @@ const Header = () => {
                                         <a href="#">
                                             <div className="media">
                                                 <span className="avatar avatar-sm">
-                                                    <Avatar classData="avatar-img rounded-circle" altData="User Image" />
+                                                    <img className="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient3.jpg" />
                                                 </span>
                                                 <div className="media-body">
                                                     <p className="noti-details"><span className="noti-title">Carl Kelly</span> send a message <span className="noti-title"> to his doctor</span></p>
@@ -108,20 +102,19 @@ const Header = () => {
                             <div className="topnav-dropdown-footer">
                                 <a href="#">View all Notifications</a>
                             </div>
-                        </div>}
-                        
+                        </div>
                     </li>
 
-                    <li className="nav-item dropdown has-arrow" ref={dropDownRef}>
-                        <a href="#" onClick={toggleMenu} className="dropdown-toggle nav-link" data-toggle="dropdown">
+                    <li className="nav-item dropdown has-arrow">
+                        <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
                             <span className="user-img">
-                                <Avatar classData="rounded-circle" altData="Ryan Taylor" width="31" />
+                                <Avatar classData="rounded-circle" width="31" altData="Ryan Taylor" />
                             </span>
                         </a>
-                        <div className={`dropdown-menu ${isOpen && 'show'}`} style={{ transform: `translateX(-125px)` }}>
+                        <div className="dropdown-menu">
                             <div className="user-header">
                                 <div className="avatar avatar-sm">
-                                    <Avatar classData="avatar-img rounded-circle" altData="User Image" />
+                                    <Avatar classData="rounded-circle" width="31" altData="Ryan Taylor" />
                                 </div>
                                 <div className="user-text">
                                     <h6>Ryan Taylor</h6>
@@ -133,7 +126,6 @@ const Header = () => {
                             <a className="dropdown-item" href="login.html">Logout</a>
                         </div>
                     </li>
-
                 </ul>
 
             </div>
