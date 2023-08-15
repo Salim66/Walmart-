@@ -31,9 +31,6 @@ const User = () => {
                   <br />
                   <br />
                   <div className="card card-table">
-                      <div className="card-header">
-                          <h4 className="card-title">Appointment List</h4>
-                      </div>
                       <div className="card-body">
                           <div className="table-responsive">
                               <table className="datatable table table-hover table-center mb-0">
