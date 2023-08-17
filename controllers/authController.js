@@ -35,7 +35,7 @@ const login = asyncHandler(async (req, res) => {
     { email: loginUser.email, role: loginUser.role },
     process.env.ACCESS_TOKEN_SECRET,
     {
-      expiresIn: "30s",
+      expiresIn: process.env.ACCESS_TOKEN_EXPIRE_IN,
     }
   );
 
@@ -44,7 +44,7 @@ const login = asyncHandler(async (req, res) => {
     { email: loginUser.email },
     process.env.REFRESH_TOKEN_SECRET,
     {
-      expiresIn: "30d",
+      expiresIn: process.env.REFRESH_TOKEN_EXPIRE_IN,
     }
   );
 
@@ -55,7 +55,7 @@ const login = asyncHandler(async (req, res) => {
       secure: false,
       maxAge: 1000 * 60 * 60 * 24 * 30,
     })
-    .json({ token: accessToken });
+    .json({ token: accessToken, user: loginUser });
 });
 
 /**
