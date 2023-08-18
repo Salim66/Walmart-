@@ -1,3 +1,4 @@
+const expressAsyncHandler = require("express-async-handler");
 const jwt = require("jsonwebtoken");
 
 const tokenVerify = (req, res, next) => {
@@ -9,7 +10,7 @@ const tokenVerify = (req, res, next) => {
 
   const token = authHeader.split(" ")[1];
 
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decode) => {
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, expressAsyncHandler((err, decode) => {
     if (err) {
       return res.status(400).json({ message: "Invalid Token" });
     }
@@ -18,7 +19,7 @@ const tokenVerify = (req, res, next) => {
     req.role = decode.role;
 
     next();
-  });
+  }));
 };
 
 module.exports = tokenVerify;
