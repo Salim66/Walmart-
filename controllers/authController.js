@@ -4,6 +4,42 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 /**
+ * @desc register new user
+ * @route POST /register
+ * @access PUBLIC
+ */
+const register = asyncHandler(async (req, res) => {
+  // get data
+  const { name, email, password } = req.body;
+
+  // check validation
+  if (!name || !password || !email) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+
+  // email existance
+  const emailCheck = await User.findOne({ email });
+
+  if (emailCheck) {
+    return res.status(400).json({ message: "Email already exists" });
+  }
+
+  // hash password
+  const hash = await bcrypt.hash(password, 10);
+
+  // create new user data
+  const user = await User.create({ name, email, password: hash });
+
+  // check
+  if (user) {
+    return res.status(201).json({ message: "Registation Successful", user });
+  } else {
+    return res.status(400).json({ message: "Invalid user data" });
+  }
+});
+
+
+/**
  * @desc login user Request
  * @route POST /auth/login
  * @access PUBLIC
@@ -119,4 +155,4 @@ const logout = (req, res) => {
 };
 
 // export
-module.exports = { login, refresh, logout };
+module.exports = { login, refresh, logout, register };
