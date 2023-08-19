@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import LogoWhite from '../../components/Logo/LogoWhite'
 
 const Register = () => {
+    const [input, setInput] = useState({
+        name: "",
+        email: "",
+        password: "",
+        cPassword: ""
+    });
+
+    const handleInputChange = (e) => {
+        setInput((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value
+        }))
+    }
   return (
       <>
           <div className="main-wrapper login-body">
@@ -19,16 +32,16 @@ const Register = () => {
 
                                   <form action="https://dreamguys.co.in/demo/doccure/admin/login.html">
                                       <div className="form-group">
-                                          <input className="form-control" type="text" placeholder="Name" />
+                                          <input className="form-control" type="text" placeholder="Name" name='name' value={input.name} onChange={handleInputChange} />
                                       </div>
                                       <div className="form-group">
-                                          <input className="form-control" type="text" placeholder="Email" />
+                                          <input className="form-control" type="text" placeholder="Email" name='email' value={input.email} onChange={handleInputChange} />
                                       </div>
                                       <div className="form-group">
-                                          <input className="form-control" type="text" placeholder="Password" />
+                                          <input className="form-control" type="text" placeholder="Password" name='password' value={input.password} onChange={handleInputChange} />
                                       </div>
                                       <div className="form-group">
-                                          <input className="form-control" type="text" placeholder="Confirm Password" />
+                                          <input className="form-control" type="text" placeholder="Confirm Password" name='cPassword' value={input.cPassword} onChange={handleInputChange} />
                                       </div>
                                       <div className="form-group mb-0">
                                           <button className="btn btn-primary btn-block" type="submit">Register</button>

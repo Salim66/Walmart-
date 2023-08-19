@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import LogoWhite from '../../components/Logo/LogoWhite'
 import { Link } from 'react-router-dom'
 
 const Login = () => {
+    const [input, setInput] = useState({
+        email: "",
+        password: ""
+    });
+
+    const handleInputChange = (e) => {
+        setInput((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value
+        }))
+    } 
   return (
       <>
           <div className="main-wrapper login-body">
@@ -19,10 +30,10 @@ const Login = () => {
 
                                   <form action="https://dreamguys.co.in/demo/doccure/admin/index.html">
                                       <div className="form-group">
-                                          <input className="form-control" type="text" placeholder="Email" />
+                                          <input className="form-control" type="text" placeholder="Email" name='email' value={input.email} onChange={handleInputChange} />
                                       </div>
                                       <div className="form-group">
-                                          <input className="form-control" type="text" placeholder="Password" />
+                                          <input className="form-control" type="text" placeholder="Password" name='password' value={input.password} onChange={handleInputChange} />
                                       </div>
                                       <div className="form-group">
                                           <button className="btn btn-primary btn-block" type="submit">Login</button>
