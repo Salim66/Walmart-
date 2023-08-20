@@ -4,6 +4,7 @@ import LogoWhite from '../../components/Logo/LogoWhite'
 import { useDispatch } from 'react-redux'
 import { createUser } from '../../features/auth/authApiSlice'
 import { sweetAlertBasic, sweetAlertStandard } from '../../utils/sweetAlert'
+import { createToast } from '../../utils/toast'
 
 const Register = () => {
     const dispatch = useDispatch();
@@ -25,9 +26,9 @@ const Register = () => {
         e.preventDefault();
 
         if (!input.name || !input.email || !input.password || !input.cPassword) {
-            sweetAlertStandard({ title: "Form Error", msg: "All fields are required!" }, "error");
+            createToast("All fields are required!", "error");
         } else if (input.password !== input.cPassword) {
-            sweetAlertStandard({ title: "Wrong Password", msg: "Password not match!" }, "error");
+            createToast("Password not match!", "error");
         } else {
             dispatch(createUser({
                 name: input.name,
@@ -41,6 +42,8 @@ const Register = () => {
                 password: "",
                 cPassword: ""
             });
+
+            sweetAlertStandard({ title: "Success", msg: "User created successful" }, "success");
         }
         
     }
