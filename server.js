@@ -9,6 +9,7 @@ const errorHandler = require("./middlewares/errorHandler");
 const userRoute = require("./routes/userRoutes");
 const authRoute = require("./routes/authRoutes");
 
+
 // initialization
 const app = express();
 
@@ -22,7 +23,7 @@ app.use(cors(corsOptions));
 app.use(express.static("public"));
 
 // environment vars
-const PORT = process.env.PORT || 5050;
+const PORT = process.env.PORT || 5052;
 
 // routing
 app.use("/api/v1/user", userRoute);
