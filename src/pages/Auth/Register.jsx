@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import LogoWhite from '../../components/Logo/LogoWhite'
 import { useDispatch } from 'react-redux'
 import { createUser } from '../../features/auth/authApiSlice'
+import { sweetAlertBasic, sweetAlertStandard } from '../../utils/sweetAlert'
 
 const Register = () => {
     const dispatch = useDispatch();
@@ -23,22 +24,25 @@ const Register = () => {
     const handleUserRegister = (e) => {
         e.preventDefault();
 
-        if (input.password !== input.cPassword) {
-            alert("Password not match!");
+        if (!input.name || !input.email || !input.password || !input.cPassword) {
+            sweetAlertStandard({ title: "Form Error", msg: "All fields are required!" }, "error");
+        } else if (input.password !== input.cPassword) {
+            sweetAlertStandard({ title: "Wrong Password", msg: "Password not match!" }, "error");
+        } else {
+            dispatch(createUser({
+                name: input.name,
+                email: input.email,
+                password: input.password
+            }))
+
+            setInput({
+                name: "",
+                email: "",
+                password: "",
+                cPassword: ""
+            });
         }
-
-        dispatch(createUser({
-            name: input.name,
-            email: input.email,
-            password: input.password
-        }))
-
-        setInput({
-            name: "",
-            email: "",
-            password: "",
-            cPassword: ""
-        });
+        
     }
   return (
       <>
