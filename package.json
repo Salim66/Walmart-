@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --no-cors",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -12,6 +12,7 @@
   "dependencies": {
     "@rakan/bootstrap4rtl": "^2.0.0",
     "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.4.0",
     "datatables.net-dt": "^1.13.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -27,5 +28,6 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.1",
     "vite": "^4.4.0"
-  }
+  },
+  "proxy": "http://localhost:5051/"
 }

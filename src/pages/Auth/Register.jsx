@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import LogoWhite from '../../components/Logo/LogoWhite'
+import { useDispatch } from 'react-redux'
+import { createUser } from '../../features/auth/authApiSlice'
 
 const Register = () => {
+    const dispatch = useDispatch();
     const [input, setInput] = useState({
         name: "",
         email: "",
@@ -15,6 +18,27 @@ const Register = () => {
             ...prevState,
             [e.target.name]: e.target.value
         }))
+    }
+
+    const handleUserRegister = (e) => {
+        e.preventDefault();
+
+        if (input.password !== input.cPassword) {
+            alert("Password not match!");
+        }
+
+        dispatch(createUser({
+            name: input.name,
+            email: input.email,
+            password: input.password
+        }))
+
+        setInput({
+            name: "",
+            email: "",
+            password: "",
+            cPassword: ""
+        });
     }
   return (
       <>
@@ -30,7 +54,7 @@ const Register = () => {
                                   <h1>Register</h1>
                                   <p className="account-subtitle">Access to our dashboard</p>
 
-                                  <form action="https://dreamguys.co.in/demo/doccure/admin/login.html">
+                                  <form onSubmit={handleUserRegister}>
                                       <div className="form-group">
                                           <input className="form-control" type="text" placeholder="Name" name='name' value={input.name} onChange={handleInputChange} />
                                       </div>
@@ -38,10 +62,10 @@ const Register = () => {
                                           <input className="form-control" type="text" placeholder="Email" name='email' value={input.email} onChange={handleInputChange} />
                                       </div>
                                       <div className="form-group">
-                                          <input className="form-control" type="text" placeholder="Password" name='password' value={input.password} onChange={handleInputChange} />
+                                          <input className="form-control" type="password" placeholder="Password" name='password' value={input.password} onChange={handleInputChange} />
                                       </div>
                                       <div className="form-group">
-                                          <input className="form-control" type="text" placeholder="Confirm Password" name='cPassword' value={input.cPassword} onChange={handleInputChange} />
+                                          <input className="form-control" type="password" placeholder="Confirm Password" name='cPassword' value={input.cPassword} onChange={handleInputChange} />
                                       </div>
                                       <div className="form-group mb-0">
                                           <button className="btn btn-primary btn-block" type="submit">Register</button>
