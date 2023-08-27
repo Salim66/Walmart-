@@ -1,8 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import LogoWhite from '../../components/Logo/LogoWhite'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { createToast } from '../../utils/toast';
+import { setMessageEmpty } from '../../features/auth/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../../features/auth/authApiSlice';
 
 const Login = () => {
+    const dispatch = useDispatch();
+    const { error, message, user } = useSelector((state) => state.auth);
+    const navigate = useNavigate();
     const [input, setInput] = useState({
         email: "",
         password: ""
@@ -14,6 +21,32 @@ const Login = () => {
             [e.target.name]: e.target.value
         }))
     } 
+
+    const handleUserLogin = (e) => {
+        e.preventDefault();
+
+        if (!input.email || !input.password) {
+            createToast("All fields are required!");
+        } else {
+            dispatch(loginUser(input));
+        }
+
+    }
+
+    useEffect(() => {
+        if (error) {
+            createToast(error);
+            dispatch(setMessageEmpty())
+        }
+        if (message) {
+            createToast(message, 'success');
+            dispatch(setMessageEmpty())
+        }
+        if (user) {
+            navigate('/');
+        }
+    }, [error, message, user]);
+
   return (
       <>
           <div className="main-wrapper login-body">
@@ -28,12 +61,12 @@ const Login = () => {
                                   <h1>Login</h1>
                                   <p className="account-subtitle">Access to our dashboard</p>
 
-                                  <form action="https://dreamguys.co.in/demo/doccure/admin/index.html">
+                                  <form onSubmit={handleUserLogin}>
                                       <div className="form-group">
                                           <input className="form-control" type="text" placeholder="Email" name='email' value={input.email} onChange={handleInputChange} />
                                       </div>
                                       <div className="form-group">
-                                          <input className="form-control" type="text" placeholder="Password" name='password' value={input.password} onChange={handleInputChange} />
+                                          <input className="form-control" type="password" placeholder="Password" name='password' value={input.password} onChange={handleInputChange} />
                                       </div>
                                       <div className="form-group">
                                           <button className="btn btn-primary btn-block" type="submit">Login</button>
