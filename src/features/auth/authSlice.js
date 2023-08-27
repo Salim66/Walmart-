@@ -20,6 +20,9 @@ const authSlice = createSlice({
         builder.addCase(createUser.rejected, (state, action) => {
             state.error = action.error.message
         })
+        .addCase(createUser.fulfilled, (state, action) => {
+            state.message = action.payload.message
+        })
     }
 });
 

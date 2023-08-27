@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import LogoWhite from '../../components/Logo/LogoWhite'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { createUser } from '../../features/auth/authApiSlice'
 import { sweetAlertBasic, sweetAlertStandard } from '../../utils/sweetAlert'
 import { createToast } from '../../utils/toast'
+import { setMessageEmpty } from '../../features/auth/authSlice'
 
 const Register = () => {
     const dispatch = useDispatch();
+    const { error, message } = useSelector((state) => state.auth);
     const [input, setInput] = useState({
         name: "",
         email: "",
@@ -42,11 +44,21 @@ const Register = () => {
                 password: "",
                 cPassword: ""
             });
-
-            sweetAlertStandard({ title: "Success", msg: "User created successful" }, "success");
         }
         
     }
+
+    useEffect(() => {
+        if (error) {
+            createToast(error);
+            dispatch(setMessageEmpty())
+        }
+        if (message) {
+            createToast(message, 'success');
+            dispatch(setMessageEmpty())
+        }
+    }, [error, message]);
+
   return (
       <>
           <div className="main-wrapper login-body">
