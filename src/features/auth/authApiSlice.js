@@ -6,6 +6,10 @@ import api from '../../../config/api.json';
 
 // create user
 export const createUser = createAsyncThunk("auth/createUser", async (data) => { 
-    const response = await axios.post("http://localhost:5051/api/v1/auth/register", data);
-    return response;
+    try {
+        const response = await axios.post("http://localhost:5051/api/v1/auth/register", data);
+        return response;
+    } catch (error) {
+        throw new Error(error.response.data.message);
+    }
 }); 
